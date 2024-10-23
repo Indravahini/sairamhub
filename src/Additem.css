@@ -1,0 +1,494 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Full page container */
+.cont {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(120deg, #f0f5f9, #e8ecef, #dfe3e8);
+}
+
+/* Fixed Header Styling */
+.cont .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e5ec;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1000;
+    width: 100vw;
+    box-shadow: 8px 8px 16px #d1d9e6,
+                -8px -8px 16px #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+.cont .header:hover {
+    background-color: #ffffff;
+    box-shadow: 6px 6px 12px #d1d9e6,
+                -6px -6px 12px #ffffff;
+}
+
+.cont .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cont .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Logo Styling */
+.cont .header-left img {
+    width: 50px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: inset 4px 4px 8px #d1d9e6, 
+                inset -4px -4px 8px #ffffff,
+                4px 4px 8px #d1d9e6,
+                -4px -4px 8px #ffffff;
+}
+
+.cont .header-left h1 {
+    font-size: 24px;
+    color: #444;
+    font-weight: 600;
+    margin-left: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Dropdown */
+.cont .dropdown {
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 16px;
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 8px 8px 16px #d1d9e6,
+                -8px -8px 16px #ffffff;
+}
+/* Button Styling */
+.cont .header-right button {
+    background: #2d3436;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 6px 6px 12px #d1d9e6,
+                -6px -6px 12px #ffffff;
+    transition: all 0.3s ease;
+}
+
+
+.cont .header-right button:hover {
+    background: #1e2729;
+    box-shadow: 4px 4px 8px #d1d9e6,
+                -4px -4px 8px #ffffff;
+    transform: translateY(-2px);
+}
+
+.cont .header-right .icon {
+    font-size: 20px;
+    color: #3b5998;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.cont .header-right .icon:hover {
+    color: #2d4373;
+}
+
+
+/* Light theme styling */
+
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px;
+    background-color: #dbdee1;
+    border-radius: 16px;
+    box-shadow: 8px 8px 16px #d1d9e6,
+                -8px -8px 16px #ffffff;
+    transition: all 0.3s ease;
+}
+
+.file-upload-container:hover {
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1), 
+                -4px -4px 12px rgba(255, 255, 255, 0.7);
+}
+
+.file-upload-container h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #444;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.file-upload-container form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="file"] {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f0f3f6;
+    box-shadow: inset 4px 4px 8px #d1d9e6,
+                inset -4px -4px 8px #ffffff;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.1),
+                inset -1px -1px 4px rgba(255, 255, 255, 0.7);
+}
+
+
+button.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3b5998;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1), 
+                -3px -3px 6px rgba(255, 255, 255, 0.7);
+    transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: #2d4373;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1), 
+                -6px -6px 12px rgba(255, 255, 255, 0.7);
+}
+
+p {
+    font-size: 14px;
+    color: green;
+    margin-top: 10px;
+}
+
+
+/* Table container */
+.cont .container .table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    background: #f0f0f0; /* Light background for the container */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1), /* Subtle shadow */
+                -6px -6px 12px rgba(255, 255, 255, 0.9); /* Light highlight */
+}
+ 
+/* Table Styling */
+.cont .container .table-container .table {
+    border-collapse: separate;
+    width: 100%;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff; /* White background for the table */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), 
+                -4px -4px 8px rgba(255, 255, 255, 0.9); /* Subtle shadow */
+}
+
+.cont .container .table-container .table thead {
+    display: table-header-group; /* Explicitly set to display table header */
+}
+
+.cont .container .table-container .table th {
+    background: #e9ecef; /* Light gray for the header */
+    color: #343a40; /* Dark text color for readability */
+    font-weight: 600;
+    padding: 16px;
+    text-transform: uppercase;
+    font-size: 14px;
+    border-bottom: 2px solid #dee2e6; /* Slightly darker border */
+}
+
+.cont .container .table-container .table td {
+    padding: 14px;
+    background: #ffffff !important; /* White background for cells */
+    border-bottom: 1px solid #dee2e6; /* Light border */
+    vertical-align: middle; /* Center content */
+}
+
+.cont .container .table-container .table tbody tr {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cont .container .table-container .table tbody tr:nth-child(odd) {
+    background: #f8f9fa; /* Light gray for odd rows */
+}
+
+.cont .container .table-container .table tbody tr:nth-child(even) {
+    background: #ffffff !important; /* White for even rows */
+}
+
+.cont .container .table-container .table tbody tr:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
+}
+
+.cont .container .table-container .table thead th {
+    transition: background-color 0.3s ease;
+}
+
+.cont .container .table-container .table thead th:hover {
+    background: #e2e6ea; /* Darker on hover */
+}
+
+/* Form control inside the table */
+.cont .container .table-container .table .form-control {
+    background: #ffffff; /* White background for form controls */
+    border-color: #ced4da; /* Light border color */
+    border-radius: 4px; /* Slight rounding */
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle inset shadow */
+}
+
+/* Action buttons inside the table */
+.cont .container .table-container .table .action-buttons button {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.cont .container .table-container .table .action-buttons button:last-child {
+    margin-right: 0;
+}
+
+.cont .container .table-container .table .btn {
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 8px 12px; /* Added padding for buttons */
+    transition: background-color 0.2s, transform 0.2s; /* Smooth transitions */
+}
+
+.cont .container .table-container .table .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.cont .container .table-container .table .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.cont .container .table-container .table .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.cont .container .table-container .table .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.cont .container .table-container .add-row-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.cont .container .btn.btn-primary.mt-3 {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Barcode styling */
+.cont .container .table-container .table .barcode-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white !important;
+}
+
+.cont .container .table-container .table .barcode {
+    max-width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    top: 10px;
+}
+
+
+.btn {
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 6px 6px 12px #d1d9e6,
+                -6px -6px 12px #ffffff;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 8px #d1d9e6,
+                -4px -4px 8px #ffffff;
+}
+
+
+
+.btn-info {
+    background: #0984e3 !important;
+    border: none !important;
+}
+
+.btn-danger {
+    background: #d63031 !important;
+    border: none !important;
+}
+
+.btn-success {
+    background: #00b894 !important;
+    border: none !important;
+}
+
+/* Responsive styles */
+/* Responsive styles */
+@media (max-width: 768px) {
+    .cont .container {
+        width: 95vw;
+        padding: 10px;
+        max-height: 70vh;
+    }
+
+    .cont .container .table-container {
+        overflow-x: auto;
+    }
+
+    .cont .container .table-container .table {
+        display: block;
+        width: 100%;
+    }
+
+    .cont .container .table-container .table thead {
+        display: none; /* Hide the table header only on mobile */
+    }
+
+    .cont .container .table-container .table tbody {
+        display: block;
+        width: 100%;
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    .cont .container .table-container .table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cont .container .table-container .table td {
+        display: flex;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        border: none;
+        justify-content: space-between; /* Ensure even spacing */
+    }
+
+    .cont .container .table-container .table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        width: 40%;
+        margin-right: 10px;
+    }
+
+    .cont .container .table-container .table td > * {
+        width: 60%;
+        text-align: left;
+    }
+
+    .cont .container .table-container .table .action-buttons {
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically on mobile */
+    }
+
+    .cont .container .table-container .table .action-buttons button {
+        margin-bottom: 10px; /* Add spacing between buttons */
+        width: 100%; /* Make buttons full-width */
+    }
+}
+
+/* Smaller screens */
+@media (max-width: 576px) {
+    .cont .container .table-container .table .barcode {
+        max-width: 100px;
+    }
+
+    .cont .header {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .cont .header-left, .cont .header-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cont .container .add-row-button {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Ensure file upload container is displayed correctly */
+    .file-upload-container {
+        flex-direction: column;
+        align-items: stretch; /* Ensure elements take full width */
+        width: 100%;
+        padding: 15px;
+    }
+
+    .file-upload-container h4 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .file-upload-container form {
+        flex-direction: column;
+        align-items: stretch; /* Make form elements take full width */
+    }
+
+    .file-upload-container form input[type="file"] {
+        width: 100%; /* Make the file input full width */
+    }
+
+    .file-upload-container form button.btn {
+        width: 100%; /* Make the submit button full width */
+        margin-top: 10px;
+    }
+}
