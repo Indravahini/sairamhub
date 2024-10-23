@@ -192,7 +192,7 @@ const AddItem = () => {
         formData.append('file', file);
         
         try {
-            const response = await axios.post('https://incubationbackend.vercel.app//api/upload', formData, {
+            const response = await axios.post('https://incubationbackend.vercel.app/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
