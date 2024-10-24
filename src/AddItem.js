@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Barcode from 'react-barcode';
 import html2canvas from 'html2canvas';
-import { FiDownload } from 'react-icons/fi'; 
+import { FiDownload } from 'react-icons/fi';
 import './Additem.css';
 
 const AddItem = () => {
@@ -48,7 +48,7 @@ const AddItem = () => {
     };
 
     const fetchInchargeDetails = (index, location) => {
-        axios.get(`https://incubationbackend.vercel.app/api/incharge/${location}`)
+        axios.get(`http://localhost:8081/api/incharge/${location}`)
             .then(response => {
                 const { incharge_name, incharge_phoneno, incharge_mail } = response.data;
                 const updatedRows = [...rows];
@@ -90,13 +90,13 @@ const AddItem = () => {
         }));
 
         const requests = validRows.map(row => 
-            axios.post('https://incubationbackend.vercel.app/api/create', row)
+            axios.post('http://localhost:8081/api/create', row)
         );
 
         Promise.all(requests)
             .then(responses => {
                 console.log('Responses:', responses);
-                navigate('/'); 
+                navigate('/');
             })
             .catch(err => console.log('Error:', err));
     };
@@ -110,80 +110,8 @@ const AddItem = () => {
         });
     };
 
-    const handleProfileClick = () => {
-        setShowDropdown(!showDropdown);
-    };
-
-    const handleLogout = () => {
-        navigate('/login');
-    };
-
-    const renderTableHeader = () => (
-        <thead className="d-table-header-group">
-            <tr>
-                <th>S.no</th>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Count</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Incharge Name</th>
-                <th>Incharge Phone No</th>
-                <th>Incharge Email</th>
-                <th>Barcode</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-    );
-
-    const renderTableRow = (row, index) => (
-        <tr key={index}>
-            <td data-label="S.no">{index + 1}</td>
-            <td data-label="Name">
-                <input type="text" className="form-control" name="name" value={row.name} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="ID">
-                <input type="text" className="form-control" name="id" value={row.id} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="Count">
-                <input type="number" className="form-control" name="count" value={row.count} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="Category">
-                <select className="form-control" name="category" value={row.category} onChange={(e) => handleRowChange(index, e)} required>
-                    <option value="">Select Category</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Sensors">Sensors</option>
-                    <option value="Lighting">Lighting</option>
-                    <option value="Single Board Computer">Single Board Computer</option>
-                </select>
-            </td>
-            <td data-label="Location">
-                <input type="text" className="form-control" name="location" value={row.location} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="Incharge Name">
-                <input type="text" className="form-control" name="incharge_name" value={row.incharge_name} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="Incharge Phone No">
-                <input type="text" className="form-control" name="incharge_phoneno" value={row.incharge_phoneno} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="Incharge Email">
-                <input type="email" className="form-control" name="incharge_mail" value={row.incharge_mail} onChange={(e) => handleRowChange(index, e)} required />
-            </td>
-            <td data-label="Barcode" className="barcode-cell">
-                {row.barcode && <Barcode value={row.barcode} className="barcode" id={`barcode-${index}`} />}
-            </td>
-            <td data-label="Actions">
-                <div className="action-buttons">
-                    <button type="button" className="btn btn-info btn-sm" onClick={() => generateBarcode(index)}>Generate Barcode</button>
-                    <button type="button" className="btn btn-danger btn-sm" onClick={() => handleDeleteRow(index)}>Delete</button>
-                    <button type="button" className="btn btn-success btn-sm" onClick={() => handleDownloadBarcode(index)}><FiDownload /></button>
-                </div>
-            </td>
-        </tr>
-    );
-
-      // File upload handling
-      const handleFileChange = (e) => {
+    // File upload handling
+    const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
     const handleFileUpload = async (e) => {
@@ -192,7 +120,7 @@ const AddItem = () => {
         formData.append('file', file);
         
         try {
-            const response = await axios.post('https://incubationbackend.vercel.app/api/upload', formData, {
+            const response = await axios.post('http://localhost:8081/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -210,7 +138,7 @@ const AddItem = () => {
     // Function to refetch table data
     const fetchTableData = async () => {
         try {
-            const response = await axios.get('https://incubationbackend.vercel.app/api/product');
+            const response = await axios.get('http://localhost:8081/api/product');
             setRows(response.data);  // Assuming response.data is an array of rows
         } catch (error) {
             console.error('Error fetching table data:', error);
@@ -222,24 +150,93 @@ const AddItem = () => {
         <div className='cont'>
             <header className="header">
                 <div className="header-left">
-                    <button className="btn btn-primary" onClick={() => navigate('/Dashboard')}>Home</button>
+                    <button className="btn btn-primary" onClick={() => navigate('/')}>Home</button>
                 </div>
                 <div className="header-right">
-                    <button className="btn btn-secondary" onClick={handleProfileClick}>User Profile</button>
+                    <button className="btn btn-secondary" onClick={() => setShowDropdown(!showDropdown)}>User Profile</button>
                     {showDropdown && (
                         <div className="dropdown">
-                            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                            <button className="btn btn-danger" onClick={() => navigate('/login')}>Logout</button>
                         </div>
                     )}
                 </div>
             </header>
 
-            <div className="container">
-                
+            <div className="container mt-5">
                 <div className="table-container">
                     <h3 className="text-primary">Add Items</h3>
-                     {/* File Upload Form */}
-                 <div className="file-upload-container">
+                    <form onSubmit={handleSubmit}>
+                        <table className="table table-bordered table-striped mt-3">
+                            <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th>Name</th>
+                                    <th>ID</th>
+                                    <th>Count</th>
+                                    <th>Category</th>
+                                    <th>Location</th>
+                                    <th>Incharge Name</th>
+                                    <th>Incharge Phone No</th>
+                                    <th>Incharge Email</th>
+                                    <th>Barcode</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rows.map((row, index) => (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>
+                                            <input type="text" className="form-control" name="name" value={row.name} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            <input type="text" className="form-control" name="id" value={row.id} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            <input type="number" className="form-control" name="count" value={row.count} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            <select className="form-control" name="category" value={row.category} onChange={(e) => handleRowChange(index, e)} required>
+                                                <option value="">Select Category</option>
+                                                <option value="Electronics">Electronics</option>
+                                                <option value="Sensors">Sensors</option>
+                                                <option value="Lighting">Lighting</option>
+                                                <option value="Single Board Computer">Single Board Computer</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" className="form-control" name="location" value={row.location} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            <input type="text" className="form-control" name="incharge_name" value={row.incharge_name} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            <input type="text" className="form-control" name="incharge_phoneno" value={row.incharge_phoneno} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            <input type="email" className="form-control" name="incharge_mail" value={row.incharge_mail} onChange={(e) => handleRowChange(index, e)} required />
+                                        </td>
+                                        <td>
+                                            {row.barcode && <Barcode value={row.barcode} className="barcode"/>}
+                                        </td>
+                                        <td>
+                                            <div className="action-buttons">
+                                                <button type="button" className="btn btn-info btn-sm" onClick={() => generateBarcode(index)}>Generate Barcode</button>
+                                                <button type="button" className="btn btn-primary btn-sm" onClick={() => handleDownloadBarcode(index)}><FiDownload /></button>
+                                                <button type="button" className="btn btn-danger btn-sm" onClick={() => handleDeleteRow(index)}>Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <button type="button" className="btn btn-success mt-3" onClick={handleAddRow}>Add Row</button>
+                        <button type="submit" className="btn btn-primary mt-3 ml-2">Save Items</button>
+                    </form>
+                </div>
+
+                {/* File Upload Form */}
+                <div className="file-upload-container">
                     <h4>Upload Excel File</h4>
                     <form onSubmit={handleFileUpload}>
                         <input type="file" onChange={handleFileChange} required />
@@ -247,21 +244,6 @@ const AddItem = () => {
                     </form>
                     {message && <p>{message}</p>}
                 </div>
-                <br>
-                </br>
-                    <form onSubmit={handleSubmit}>
-                        <table className="table">
-                            {renderTableHeader()}
-                            <tbody>
-                                {rows.map((row, index) => renderTableRow(row, index))}
-                            </tbody>
-                        </table>
-                        <button type="button" className="btn btn-primary add-row-button" onClick={handleAddRow}>Add Row</button>
-                        <button type="submit" className="btn btn-primary mt-3">Submit</button>
-                    </form>
-                </div>
-
-                
             </div>
         </div>
     );
