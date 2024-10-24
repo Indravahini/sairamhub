@@ -48,7 +48,7 @@ const AddItem = () => {
     };
 
     const fetchInchargeDetails = (index, location) => {
-        axios.get(`http://localhost:8081/api/incharge/${location}`)
+        axios.get(`https://incubationbackend.vercel.app/api/incharge/${location}`)
             .then(response => {
                 const { incharge_name, incharge_phoneno, incharge_mail } = response.data;
                 const updatedRows = [...rows];
@@ -90,7 +90,7 @@ const AddItem = () => {
         }));
 
         const requests = validRows.map(row => 
-            axios.post('http://localhost:8081/api/create', row)
+            axios.post('https://incubationbackend.vercel.app/api/create', row)
         );
 
         Promise.all(requests)
@@ -120,7 +120,7 @@ const AddItem = () => {
         formData.append('file', file);
         
         try {
-            const response = await axios.post('http://localhost:8081/api/upload', formData, {
+            const response = await axios.post('https://incubationbackend.vercel.app/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -138,7 +138,7 @@ const AddItem = () => {
     // Function to refetch table data
     const fetchTableData = async () => {
         try {
-            const response = await axios.get('http://localhost:8081/api/product');
+            const response = await axios.get('https://incubationbackend.vercel.app/api/product');
             setRows(response.data);  // Assuming response.data is an array of rows
         } catch (error) {
             console.error('Error fetching table data:', error);
