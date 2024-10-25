@@ -66,6 +66,26 @@ function View() {
                             <option key={index} value={location}>{location}</option>
                         ))}
                     </select>
+                        <div className="btn-group ms-3">
+                        <button
+                            className={`btn ${stockFilter === '' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setStockFilter('')}
+                        >
+                            All
+                        </button>
+                        <button
+                            className={`btn ${stockFilter === 'in_stock' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setStockFilter('in_stock')}
+                        >
+                            In Stock
+                        </button>
+                        <button
+                            className={`btn ${stockFilter === 'no_stock' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setStockFilter('no_stock')}
+                        >
+                            No Stock
+                        </button>
+                    </div>
                 </div>
 <div className='table-container'>
                 <table className='table table-bordered' >
