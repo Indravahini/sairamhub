@@ -11,17 +11,23 @@ function View() {
     const [locationFilter, setLocationFilter] = useState(""); // State for location filter
     const navigate = useNavigate();
 
-    useEffect(() => {
+useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://incubationbackend.vercel.app/api/');
+                const response = await axios.get('http://localhost:8081/api/', {
+                    params: {
+                        location: locationFilter,
+                        stock: stockFilter // Pass stock filter as a query parameter
+                    
+                    }
+                });
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
         fetchData();
-    }, []);
+    }, [locationFilter, stockFilter]);
 
     const handleMouseEnter = (item, position) => {
         setHoveredItem(item);
