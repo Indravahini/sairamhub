@@ -212,6 +212,7 @@ const AddItem = () => {
         try {
             const response = await axios.get('https://incubationbackend.vercel.app/api/');
             setRows(response.data); 
+            console.log('Fetched table data:', response.data); 
         } catch (error) {
             console.error('Error fetching table data:', error);
         }
