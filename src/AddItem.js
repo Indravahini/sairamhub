@@ -210,7 +210,7 @@ const AddItem = () => {
     // Function to refetch table data
     const fetchTableData = async () => {
         try {
-            const response = await axios.get('https://incubationbackend.vercel.app/api/product');
+            const response = await axios.get('https://incubationbackend.vercel.app/api/');
             setRows(response.data); 
         } catch (error) {
             console.error('Error fetching table data:', error);
