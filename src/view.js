@@ -14,7 +14,7 @@ function View() {
 useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/api/', {
+                const response = await axios.get('https://incubationbackend.vercel.app/api/', {
                     params: {
                         location: locationFilter,
                         stock: stockFilter // Pass stock filter as a query parameter
